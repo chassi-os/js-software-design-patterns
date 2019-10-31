@@ -1,0 +1,19 @@
+{
+  "name": "@chassi-os/js-software-patters",
+  "version": "0.0.0",
+  "description": "industry proven software patterns",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chassi-os/software-patterns.git"
+  },
+  "author": "anthony kulis <anthony@chassi.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chassi-os/software-patterns/issues"
+  },
+  "homepage": "https://github.com/chassi-os/software-patterns#readme"
+}
