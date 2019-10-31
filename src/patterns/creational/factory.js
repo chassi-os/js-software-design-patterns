@@ -19,7 +19,7 @@ class Factory {
 		const className = this.mappings.get(enumName);
 		let instance;
 		try {
-			instance = new className(args);
+			instance = new className(...args);
 		} catch (e) {
 			throw new Error(`${className} doesnt appear to be a class`);
 		}

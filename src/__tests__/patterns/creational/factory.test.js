@@ -2,6 +2,11 @@ import Factory from '../../../patterns/creational/factory';
 
 class Dog {}
 class Cat {}
+class Parrot {
+	constructor(props) {
+		this.props = props;
+	}
+}
 
 describe('Factory tests', () => {
 	let factory;
@@ -44,6 +49,13 @@ describe('Factory tests', () => {
 		const cat = factory.get('CAT');
 		expect(dog instanceof Dog).toBe(true);
 		expect(cat instanceof Cat).toBe(true);
+	});
+
+	it('should get an instance with passing properties', () => {
+		factory.setEnums(['PARROT']);
+		factory.setLine('PARROT', Parrot);
+		const bird = factory.get('PARROT', ['some args']);
+		expect(bird.props).toEqual('some args');
 	});
 
 	it('should throw an exception when no enum name on get', () => {
