@@ -56,3 +56,15 @@ const dog = AnimalFactory.get('DOG');
 const cat = AnimalFactory.get('CAT');
 const parrot = AnimalFactory.get('PARROT')
 ```
+
+#### makeLazy
+Provides a generic lazy initialization pattern function. Any class that has some `set[A-Z][a-zA-Z0-9]*` methods, will have those methods extracted and used to create a new instance the first time any of those methods are called.
+
+```javascript
+import { makeLazy } from '@chassi-os/js-software-patterns/creational';
+import { Dog } from './my-animal-classes';
+
+const lazyDog = makeLazy(Dog); // No instance of Dog created yet.
+lazyDog.bark(); // Instance has not been created.
+lazyDog.eat(); // Initial instance used, no additional instance created.
+```
