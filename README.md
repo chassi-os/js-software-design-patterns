@@ -32,3 +32,27 @@ buider.age = 10;
 const adult = builder.build();
 // expected { breed: 'husky', age: 10 }
 ```
+
+#### Factory
+Provides a generic factory pattern. Because this is generic and meant to set up another factory of enumerated class instances, a method of `setEnums` is required to make the class strict on what is can instantiate. Also, during setup, a method `setLine` is provided that will associate an item name in the enum list to reference which class it should construct.
+
+```javascript
+import { Factory } from '@chassi-os/js-software-patterns/creational';
+import { Cat, Dog, Parrot } from './my-animal-classes';
+
+const animalFactory = new Factory();
+
+animalFactory.setEnums(['CAT', 'DOG', 'PARROT'])
+animalFactory.setLine('CAT', Cat);
+animalFactory.setLine('DOG', Dog);
+animalFactory.setLine('PARROT', Parrot);
+
+export default animalFactory;
+```
+
+```javascript
+import AnimalFactory from './animal-factory'
+const dog = AnimalFactory.get('DOG');
+const cat = AnimalFactory.get('CAT');
+const parrot = AnimalFactory.get('PARROT')
+```
