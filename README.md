@@ -12,7 +12,7 @@ import * as patterns from '@chassi-os/js-software-patterns';
 Well known creational patterns
 
 #### Builder Pattern
-Used to build classes that have minor changes from instance to instance efficiently. Any class that has a `set[A-Z][a-zA-Z0-9]*` method, will have that method extracted and used to build the instance. Setters should only every have one property passed.
+Used to build classes that have minor changes from instance to instance efficiently. Any class that has a `set[A-Z][a-zA-Z0-9]*` method, will have that method extracted and used to build the instance. Setters should only ever have one property passed.
 
 ```javascript
 import { Builder} from '@chassi-os/js-software-patterns/Creational'
