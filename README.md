@@ -98,6 +98,7 @@ console.log(one.execute());
 
 console.log(two.execute());
 // outputs 2
+```
 
 #### Bridge
 A take on the well known bridge pattern. Allows for any two methods of class instances to be joined, resulting in a return of an executable function.
