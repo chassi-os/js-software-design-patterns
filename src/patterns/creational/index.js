@@ -3,7 +3,7 @@ import Factory from './factory';
 import makeLazy from './lazy';
 
 module.exports = {
-	Buider,
+	Builder,
 	Factory,
 	makeLazy,
 };
