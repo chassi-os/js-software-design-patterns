@@ -14,7 +14,7 @@ Well known creational patterns
 Used to build classes that have minor changes from instance to instance efficiently. Any class that has a `set[A-Z][a-zA-Z0-9]*` method, will have that method extracted and used to build the instance. Setters should only ever have one property passed.
 
 ```javascript
-import { Builder} from 'js-software-design-patterns/creational'
+import { Builder} from 'js-software-design-patterns'
 
 const Dog {
     setAge(age){ this.age = age }
@@ -36,7 +36,7 @@ const adult = builder.build();
 Provides a generic factory pattern. Because this is generic and meant to set up another factory of enumerated class instances, a method of `setEnums` is required to make the class strict on what is can instantiate. Also, during setup, a method `setLine` is provided that will associate an item name in the enum list to reference which class it should construct.
 
 ```javascript
-import { Factory } from 'js-software-design-patterns/creational';
+import { Factory } from 'js-software-design-patterns';
 import { Cat, Dog, Parrot } from './my-animal-classes';
 
 const animalFactory = new Factory();
@@ -60,7 +60,7 @@ const parrot = AnimalFactory.get('PARROT')
 Provides a generic lazy initialization pattern function. Any class that has some `set[A-Z][a-zA-Z0-9]*` methods, will have those methods extracted and used to create a new instance the first time any of those methods are called.
 
 ```javascript
-import { makeLazy } from 'js-software-design-patterns/creational';
+import { makeLazy } from 'js-software-design-patterns';
 import { Dog } from './my-animal-classes';
 
 const lazyDog = makeLazy(Dog); // No instance of Dog created yet.
@@ -76,7 +76,7 @@ Well known behavioral patterns
 Implementation of a generic Chain of Responsibility class.
 
 ```javascript
-import { ChainOfResponsibility } from 'js-software-design-patterns/behavioral';
+import { ChainOfResponsibility } from 'js-software-design-patterns';
 
 class Example extends ChainOfResponsibility {
     constructor(number = 0){
@@ -104,7 +104,7 @@ console.log(two.execute());
 A take on the well known bridge pattern. Allows for any two methods of class instances to be joined, resulting in a return of an executable function.
 
 ```javascript
-import { Bridge } from 'js-software-design-patterns/behavioral';
+import { Bridge } from 'js-software-design-patterns';
 
 class Remote {
     changeChannelTo = (channel) => {

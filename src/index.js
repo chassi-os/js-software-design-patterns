@@ -6,7 +6,4 @@ export default {
 	...behavioral,
 	...creational,
 	...structural,
-	behavioral,
-	creational,
-	structural,
 };
