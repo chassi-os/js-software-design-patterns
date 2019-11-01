@@ -69,8 +69,35 @@ lazyDog.eat(); // Initial instance used, no additional instance created.
 ```
 
 ### Behavioral
-Well know behavioral patterns
+Well known behavioral patterns
 
+
+#### Chain of Responsibility
+Implementation of a generic Chain of Responsibility class.
+
+```javascript
+import { ChainOfResponsibility } from '@chassi-os/js-design-patterns/behavioral';
+
+class Example extends ChainOfResponsibility {
+    constructor(number = 0){
+        super();
+        this.number = number;
+    }
+
+    executeOn = (number = 0) => this.number + number;
+}
+
+
+const one = new Example(1);
+const two = new Example(2);
+
+one.appendNext(two);
+
+console.log(one.execute());
+// outputs 3
+
+console.log(two.execute());
+// outputs 2
 
 #### Bridge
 A take on the well known bridge pattern. Allows for any two methods of class instances to be joined, resulting in a return of an executable function.
