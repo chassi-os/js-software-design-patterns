@@ -129,3 +129,44 @@ channelChanger(20);
 //      Remote changing channel to 20.
 //      TV set to channel 20.
 ```
+
+#### PubSub (Observer Pattern)
+A declarative namespaced pubsub pattern.
+
+```javascript
+import { PubSub } from 'js-software-design-patterns';
+
+const pubSub = new PubSub();
+
+const fox = pubSub.getPublisher('Fox Network', 'Fox Sports', 'Fox News');
+const espn = pubSub.getPublisher('ESPN Network', 'ESPN College', 'ESPN 2', 'ESPN Ocho');
+
+const subscriber = pubSub.getSubscriber('Sam Subscriber', {'Fox Network': ['Fox Sports'],'ESPN Network': ['ESPN Ocho']});
+subscriber.setOnPublish( data => { console.log(data) });
+
+// Positive case
+fox.publish('Fox Sports', 'Bears win');
+// Expect "Bears win" to be printed
+
+// Negative case
+espn.publish('ESPN College', 'Texas loses');
+// Expect nothing to happen
+
+// Add and subscribe to channel after it is created.
+espn.createChannel('ESPN Golf');
+subscriber.subscribe(espn, 'ESPN Golf');
+
+// Unsubscribe from a channel
+subscriber.unsubscribe(espn, 'ESPN Golf');
+
+// Calling get publishers on an existing publisher returns the same publisher instance
+const sportsChannel = pubSub.getPublisher('ESPN Network');
+console.log(sportsChannel === espn);
+// Expect true.
+
+// Calling subscriber ALWAYS returns a new instance regardless of the name
+const otherSubscriber = pubSub.getSubscriber('Sam Subscriber', {'Fox Network': ['Fox Sports'],'ESPN Network': ['ESPN Ocho']});
+console.log(subscriber === otherSubscriber);
+// Expect false.
+
+```
