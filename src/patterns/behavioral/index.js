@@ -1,7 +1,7 @@
 import Bridge from './bridge';
 import ChainOfResponsibility from './chain-of-responsibility';
 
-export default {
-  Bridge,
+module.exports = {
+	Bridge,
 	ChainOfResponsibility,
 };

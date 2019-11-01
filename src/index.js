@@ -1,8 +1,8 @@
-import behavioral from './patterns/behavioral';
-import creational from './patterns/creational';
-import structural from './patterns/structural';
+import * as behavioral from './patterns/behavioral';
+import * as creational from './patterns/creational';
+import * as structural from './patterns/structural';
 
-export default {
+module.exports = {
 	...behavioral,
 	...creational,
 	...structural,
