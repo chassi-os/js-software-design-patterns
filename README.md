@@ -63,9 +63,9 @@ Provides a generic lazy initialization pattern function. Any class that has some
 import { makeLazy } from 'js-software-design-patterns';
 import { Dog } from './my-animal-classes';
 
-const lazyDog = makeLazy(Dog); // No instance of Dog created yet.
-lazyDog.bark(); // Instance has not been created.
-lazyDog.eat(); // Initial instance used, no additional instance created.
+const lazyDog = makeLazy(Dog);
+lazyDog.bark();
+lazyDog.eat();
 ```
 
 ### Behavioral
