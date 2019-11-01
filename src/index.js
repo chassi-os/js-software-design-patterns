@@ -7,9 +7,3 @@ module.exports = {
 	...creational,
 	...structural,
 };
-
-export default {
-	behavioral,
-	creational,
-	structural,
-};
