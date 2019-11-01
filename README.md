@@ -5,7 +5,6 @@
 import * as patterns from '@chassi-os/js-software-patterns';
 ```
 
-
 ## Categories
 
 ### Creational
@@ -57,6 +56,17 @@ const cat = AnimalFactory.get('CAT');
 const parrot = AnimalFactory.get('PARROT')
 ```
 
+#### makeLazy
+Provides a generic lazy initialization pattern function. Any class that has some `set[A-Z][a-zA-Z0-9]*` methods, will have those methods extracted and used to create a new instance the first time any of those methods are called.
+
+```javascript
+import { makeLazy } from '@chassi-os/js-software-patterns/creational';
+import { Dog } from './my-animal-classes';
+
+const lazyDog = makeLazy(Dog); // No instance of Dog created yet.
+lazyDog.bark(); // Instance has not been created.
+lazyDog.eat(); // Initial instance used, no additional instance created.
+```
 
 ### Behavioral
 Well known behavioral patterns
@@ -88,4 +98,33 @@ console.log(one.execute());
 
 console.log(two.execute());
 // outputs 2
+
+#### Bridge
+A take on the well known bridge pattern. Allows for any two methods of class instances to be joined, resulting in a return of an executable function.
+
+```javascript
+import { Bridge } from 'js-software-design-patterns/behavioral';
+
+class Remote {
+    changeChannelTo = (channel) => {
+        console.log(`Remote changing channel to ${channel}. `)
+        return channel;
+    }
+}
+
+class TV {
+    changeChannelTo = (channel) => console.log(`TV set to channel ${channel}.`)
+}
+
+const remote = new Remote();
+const tv = new TV();
+const bridge = new Bridge();
+
+const channelChanger = bridge.join(remote.changeChannelTo, tv.changeChannelTo);
+
+
+channelChanger(20);
+// expected output -
+//      Remote changing channel to 20.
+//      TV set to channel 20.
 ```
