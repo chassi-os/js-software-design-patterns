@@ -56,3 +56,36 @@ const dog = AnimalFactory.get('DOG');
 const cat = AnimalFactory.get('CAT');
 const parrot = AnimalFactory.get('PARROT')
 ```
+
+
+### Behavioral
+Well known behavioral patterns
+
+
+#### Chain of Responsibility
+Implementation of a generic Chain of Responsibility class.
+
+```javascript
+import { ChainOfResponsibility } from '@chassi-os/js-design-patterns/behavioral';
+
+class Example extends ChainOfResponsibility {
+    constructor(number = 0){
+        super();
+        this.number = number;
+    }
+
+    executeOn = (number = 0) => this.number + number;
+}
+
+
+const one = new Example(1);
+const two = new Example(2);
+
+one.appendNext(two);
+
+console.log(one.execute());
+// outputs 3
+
+console.log(two.execute());
+// outputs 2
+```
