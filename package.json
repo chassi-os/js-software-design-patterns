@@ -1,5 +1,5 @@
 {
-  "name": "@chassi-os/js-software-patterns",
+  "name": "js-software-design-patterns",
   "version": "0.1.0",
   "description": "industry proven software patterns",
   "main": "lib/index.js",
