@@ -68,11 +68,14 @@ A take on the well known bridge pattern. Allows for any two methods of class ins
 import { Bridge } from 'js-software-design-patterns/behavioral';
 
 class Remote {
-    changeChannelTo = (channel) => `Remote changing channel to ${channel}. `
+    changeChannelTo = (channel) => {
+        console.log(`Remote changing channel to ${channel}. `)
+        return channel;
+    }
 }
 
 class TV {
-    changeChannelTo = (channel) => `TV set to channel ${channel}.`
+    changeChannelTo = (channel) => console.log(`TV set to channel ${channel}.`)
 }
 
 const remote = new Remote();
@@ -82,6 +85,8 @@ const bridge = new Bridge();
 const channelChanger = bridge.join(remote.changeChannelTo, tv.changeChannelTo);
 
 
-console.warn(channelChanger(20));
-// expected output - Remote changing channel to 20. TV set to channel 20.
+channelChanger(20);
+// expected output -
+//      Remote changing channel to 20.
+//      TV set to channel 20.
 ```
