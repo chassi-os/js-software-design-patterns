@@ -56,3 +56,32 @@ const dog = AnimalFactory.get('DOG');
 const cat = AnimalFactory.get('CAT');
 const parrot = AnimalFactory.get('PARROT')
 ```
+
+### Behavioral
+Well know behavioral patterns
+
+
+#### Bridge
+A take on the well known bridge pattern. Allows for any two methods of class instances to be joined, resulting in a return of an executable function.
+
+```javascript
+import { Bridge } from 'js-software-design-patterns/behavioral';
+
+class Remote {
+    changeChannelTo = (channel) => `Remote changing channel to ${channel}. `
+}
+
+class TV {
+    changeChannelTo = (channel) => `TV set to channel ${channel}.`
+}
+
+const remote = new Remote();
+const tv = new TV();
+const bridge = new Bridge();
+
+const channelChanger = bridge.join(remote.changeChannelTo, tv.changeChannelTo);
+
+
+console.warn(channelChanger(20));
+// expected output - Remote changing channel to 20. TV set to channel 20.
+```
