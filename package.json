@@ -1,6 +1,6 @@
 {
   "name": "js-software-design-patterns",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "industry proven software patterns",
   "main": "lib/index.js",
   "scripts": {
