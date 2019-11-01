@@ -18,6 +18,11 @@ class Remote {
 		this.channel--;
 		return this.channel;
 	};
+
+	jumpToChannel = channel => {
+		this.channel = channel;
+		return this.channel;
+	};
 }
 
 describe('Bridge tests', () => {
@@ -51,5 +56,10 @@ describe('Bridge tests', () => {
 		const channelDown = bridge.join(remote.channelDown, tv.setChannel);
 		expect(channelUp()).toBe('Bedroom TV had its channel changed to 1');
 		expect(channelDown()).toBe('Bedroom TV had its channel changed to 0');
+	});
+
+	it('should accept arguments with return callable function', () => {
+		const changeTo = bridge.join(remote.jumpToChannel, tv.setChannel);
+		expect(changeTo(20)).toBe('Bedroom TV had its channel changed to 20');
 	});
 });
