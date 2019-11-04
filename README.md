@@ -39,9 +39,13 @@ Provides a generic factory pattern. Because this is generic and meant to set up 
 import { Factory } from 'js-software-design-patterns';
 import { Cat, Dog, Parrot } from './my-animal-classes';
 
+// construct a generic factory
 const animalFactory = new Factory();
 
+// factory needs to be fed well defined production lines
 animalFactory.setEnums(['CAT', 'DOG', 'PARROT'])
+
+// link the production line keys to the Class that they will construct
 animalFactory.setLine('CAT', Cat);
 animalFactory.setLine('DOG', Dog);
 animalFactory.setLine('PARROT', Parrot);
@@ -57,14 +61,15 @@ const parrot = AnimalFactory.get('PARROT')
 ```
 
 #### makeLazy
-Provides a generic lazy initialization pattern function. The methods of the class will act as a trigger to instantiate the class. This pattern is especially useful when you need objects in a wide scope but do not know when they will be used or by which instance methods to which the lazy object belongs.
+Provides a generic lazy initialization pattern function. The methods of the class will act as a trigger to instantiate the class. This pattern is especially useful when you need objects in a wide scope but do not know when they will be used or by which instance methods to which the lazy object belongs. Note, methods must be instance methods when constructed; anonymous methods (arrow operators) will not be referenced. Static class methods are obviously spurious to an instance.
 
 ```javascript
 import { makeLazy } from 'js-software-design-patterns';
 
 class Dog {
-    bark: () => console.log('bark!!!')
-    eat: () => {}
+    bark(){ console.log('bark!!!') }
+    eat(){ }
+    sleep: () => {}
 }
 
 // lazily set up a reference to the constructor
@@ -78,6 +83,12 @@ lazyDog.bark();
 
 // from this point on, all methods called belonging to Dog are called from the managed instance
 lazyDog.eat();
+
+
+// example of failure where arrow operators will not work
+const brokenLazyDog = makeLazy(Dog);
+brokenLazyDog.sleep();
+// expected output - sleep is not defined
 ```
 
 ### Behavioral
