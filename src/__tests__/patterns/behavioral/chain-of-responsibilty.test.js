@@ -7,7 +7,7 @@ class TestChainItem extends ChainOfResponsibility {
 	}
 
 	executeOn(number = 0) {
-		this.number + number;
+		return this.number + number;
 	}
 }
 

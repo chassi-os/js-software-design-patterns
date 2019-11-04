@@ -7,13 +7,13 @@ class ChainOfResponsibility {
 		this.next = next;
 	}
 
-	executeOn = () => {};
+	executeOn() {}
 
-	execute = previousValues => {
+	execute(previousValues) {
 		const val = this.executeOn(previousValues);
 		if (!this.next) return val;
 		return this.next.execute(val);
-	};
+	}
 }
 
 export default ChainOfResponsibility;
