@@ -104,6 +104,11 @@ const color = blueDog.color;
 console.log(color === 'blue');
 // expected output - true
 
+
+// example of getting the actual lazy instance if needed
+const instance = lazyDog.getInstance();
+console.log(instance instanceof Dog)
+// expected output - true
 ```
 
 ### Behavioral
