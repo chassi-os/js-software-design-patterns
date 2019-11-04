@@ -71,6 +71,35 @@ lazyDog.eat();
 ### Behavioral
 Well known behavioral patterns
 
+#### Bridge
+A take on the well known bridge pattern. Allows for any two methods of class instances to be joined, resulting in a return of an executable function.
+
+```javascript
+import { Bridge } from 'js-software-design-patterns';
+
+class Remote {
+    changeChannelTo = (channel) => {
+        console.log(`Remote changing channel to ${channel}. `)
+        return channel;
+    }
+}
+
+class TV {
+    changeChannelTo = (channel) => console.log(`TV set to channel ${channel}.`)
+}
+
+const remote = new Remote();
+const tv = new TV();
+const bridge = new Bridge();
+
+const channelChanger = bridge.join(remote.changeChannelTo, tv.changeChannelTo);
+
+
+channelChanger(20);
+// expected output -
+//      Remote changing channel to 20.
+//      TV set to channel 20.
+```
 
 #### Chain of Responsibility
 Implementation of a generic Chain of Responsibility class.
@@ -100,34 +129,44 @@ console.log(two.execute());
 // outputs 2
 ```
 
-#### Bridge
-A take on the well known bridge pattern. Allows for any two methods of class instances to be joined, resulting in a return of an executable function.
+#### Command Pattern
+Implementation of the command pattern using function pointers rather than command objects.
 
 ```javascript
-import { Bridge } from 'js-software-design-patterns';
+import Commander from 'js-software-design-patterns';
 
-class Remote {
-    changeChannelTo = (channel) => {
-        console.log(`Remote changing channel to ${channel}. `)
-        return channel;
-    }
+const commander = new Commander();
+
+class LightSwitch {
+    static turnOn = () => console.log('Turned on the light')
 }
 
-class TV {
-    changeChannelTo = (channel) => console.log(`TV set to channel ${channel}.`)
+class Fan {
+    static turnOn = () => console.warn('Turned on the fan')
 }
 
-const remote = new Remote();
-const tv = new TV();
-const bridge = new Bridge();
+class AC {
+    static coolHouse = (temp) => console.log(`Turned down the AC to ${temp}`)
+}
 
-const channelChanger = bridge.join(remote.changeChannelTo, tv.changeChannelTo);
+commander.register('turn on', LightSwitch.turnOn);
+commander.register('turn on', Fan.turnOn);
+commander.register('make cooler', AC.coolHouse);
+commander.register('make cooler', Fan.turnOn);
 
 
-channelChanger(20);
-// expected output -
-//      Remote changing channel to 20.
-//      TV set to channel 20.
+// event driven execution
+commander.execute('turn on');
+// expected output
+//  Turned on the light
+//  Turned on the fan
+
+
+// event drive execution 
+commander.execute('make cooler', 65);
+// expected output
+//  - Turned down the AC to 65
+//  - Turned on the fan
 ```
 
 #### PubSub (Observer Pattern)
