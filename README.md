@@ -57,14 +57,26 @@ const parrot = AnimalFactory.get('PARROT')
 ```
 
 #### makeLazy
-Provides a generic lazy initialization pattern function. Any class that has some `set[A-Z][a-zA-Z0-9]*` methods, will have those methods extracted and used to create a new instance the first time any of those methods are called.
+Provides a generic lazy initialization pattern function. The methods of the class will act as a trigger to instantiate the class. This pattern is especially useful when you need objects in a wide scope but do not know when they will be used or by which instance methods to which the lazy object belongs.
 
 ```javascript
 import { makeLazy } from 'js-software-design-patterns';
-import { Dog } from './my-animal-classes';
 
+class Dog {
+    bark: () => console.log('bark!!!')
+    eat: () => {}
+}
+
+// lazily set up a reference to the constructor
 const lazyDog = makeLazy(Dog);
+
+// all Dog methods are available to the lazyDog wrapper. Dog has not been instantiated yet
 lazyDog.bark();
+// A Dog instance has been created
+// Expected output
+//  - bark!!!
+
+// from this point on, all methods called belonging to Dog are called from the managed instance
 lazyDog.eat();
 ```
 
@@ -162,7 +174,7 @@ commander.execute('turn on');
 //  Turned on the fan
 
 
-// event drive execution 
+// event drive execution
 commander.execute('make cooler', 65);
 // expected output
 //  - Turned down the AC to 65
