@@ -40,19 +40,19 @@ describe('Bridge tests', () => {
 	});
 
 	it('should return a function to execute', () => {
-		const callable = bridge(remote, remote.channelUp).to(tv, tv.setChannel);
+		const callable = bridge(remote, remote.channelUp)(tv, tv.setChannel);
 		expect(typeof callable).toEqual('function');
 	});
 
 	it('should bridge function calls, returning correct value', () => {
-		const channelUp = bridge(remote, remote.channelUp).to(tv, tv.setChannel);
-		const channelDown = bridge(remote, remote.channelDown).to(tv, tv.setChannel);
+		const channelUp = bridge(remote, remote.channelUp)(tv, tv.setChannel);
+		const channelDown = bridge(remote, remote.channelDown)(tv, tv.setChannel);
 		expect(channelUp()).toBe('Bedroom TV had its channel changed to 1');
 		expect(channelDown()).toBe('Bedroom TV had its channel changed to 0');
 	});
 
 	it('should accept arguments with return callable function', () => {
-		const changeTo = bridge(remote, remote.jumpToChannel).to(tv, tv.setChannel);
+		const changeTo = bridge(remote, remote.jumpToChannel)(tv, tv.setChannel);
 		expect(changeTo(20)).toBe('Bedroom TV had its channel changed to 20');
 	});
 });
