@@ -68,4 +68,10 @@ describe('Lazy test', () => {
 		const color = dog.color;
 		expect(color).toEqual('blue');
 	});
+
+	it('should return an instance of the class when asked', () => {
+		const dog = makeLazy(Dog);
+		dog.bark();
+		expect(dog.getInstance() instanceof Dog).toBe(true);
+	});
 });
