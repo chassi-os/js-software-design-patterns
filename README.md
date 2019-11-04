@@ -57,48 +57,31 @@ const parrot = AnimalFactory.get('PARROT')
 ```
 
 #### makeLazy
-Provides a generic lazy initialization pattern function. Any class that has some `set[A-Z][a-zA-Z0-9]*` methods, will have those methods extracted and used to create a new instance the first time any of those methods are called.
+Provides a generic lazy initialization pattern function. The methods of the class will act as a trigger to instantiate the class. This pattern is especially useful when you need objects in a wide scope but do not know when they will be used or by which instance methods to which the lazy object belongs.
 
 ```javascript
 import { makeLazy } from 'js-software-design-patterns';
-import { Dog } from './my-animal-classes';
 
+class Dog {
+    bark: () => console.log('bark!!!')
+    eat: () => {}
+}
+
+// lazily set up a reference to the constructor
 const lazyDog = makeLazy(Dog);
+
+// all Dog methods are available to the lazyDog wrapper. Dog has not been instantiated yet
 lazyDog.bark();
+// A Dog instance has been created
+// Expected output
+//  - bark!!!
+
+// from this point on, all methods called belonging to Dog are called from the managed instance
 lazyDog.eat();
 ```
 
 ### Behavioral
 Well known behavioral patterns
-
-
-#### Chain of Responsibility
-Implementation of a generic Chain of Responsibility class.
-
-```javascript
-import { ChainOfResponsibility } from 'js-software-design-patterns';
-
-class Example extends ChainOfResponsibility {
-    constructor(number = 0){
-        super();
-        this.number = number;
-    }
-
-    executeOn = (number = 0) => this.number + number;
-}
-
-
-const one = new Example(1);
-const two = new Example(2);
-
-one.appendNext(two);
-
-console.log(one.execute());
-// outputs 3
-
-console.log(two.execute());
-// outputs 2
-```
 
 #### Bridge
 A take on the well known bridge pattern. Allows for any two methods of class instances to be joined, resulting in a return of an executable function.
@@ -128,6 +111,74 @@ channelChanger(20);
 // expected output -
 //      Remote changing channel to 20.
 //      TV set to channel 20.
+```
+
+#### Chain of Responsibility
+Implementation of a generic Chain of Responsibility class.
+
+```javascript
+import { ChainOfResponsibility } from 'js-software-design-patterns';
+
+class Example extends ChainOfResponsibility {
+    constructor(number = 0){
+        super();
+        this.number = number;
+    }
+
+    executeOn = (number = 0) => this.number + number;
+}
+
+
+const one = new Example(1);
+const two = new Example(2);
+
+one.appendNext(two);
+
+console.log(one.execute());
+// outputs 3
+
+console.log(two.execute());
+// outputs 2
+```
+
+#### Command Pattern
+Implementation of the command pattern using function pointers rather than command objects.
+
+```javascript
+import Commander from 'js-software-design-patterns';
+
+const commander = new Commander();
+
+class LightSwitch {
+    static turnOn = () => console.log('Turned on the light')
+}
+
+class Fan {
+    static turnOn = () => console.warn('Turned on the fan')
+}
+
+class AC {
+    static coolHouse = (temp) => console.log(`Turned down the AC to ${temp}`)
+}
+
+commander.register('turn on', LightSwitch.turnOn);
+commander.register('turn on', Fan.turnOn);
+commander.register('make cooler', AC.coolHouse);
+commander.register('make cooler', Fan.turnOn);
+
+
+// event driven execution
+commander.execute('turn on');
+// expected output
+//  Turned on the light
+//  Turned on the fan
+
+
+// event drive execution
+commander.execute('make cooler', 65);
+// expected output
+//  - Turned down the AC to 65
+//  - Turned on the fan
 ```
 
 #### PubSub (Observer Pattern)

@@ -12,8 +12,8 @@ describe('index export tests', () => {
 		const creationalItems = fs.readdirSync('src/patterns/creational');
 		const structuralItems = fs.readdirSync('src/patterns/structural');
 
-		// we remove the -1 for length, but add +1 because we add the category directory as well
-		const ln = behavioralItems.length + creationalItems.length + structuralItems.length;
+		// add one for default export
+		const ln = behavioralItems.length + creationalItems.length + structuralItems.length - 3 + 1;
 		expect(ln).toEqual(Object.keys(index).length);
 	});
 });
