@@ -3,6 +3,18 @@ import makeLazy from '../../../patterns/creational/lazy';
 class Dog {
 	bark() {}
 	growl() {}
+	setAge(age) {
+		this.age = age;
+	}
+	getAge() {
+		return this.age;
+	}
+	set color(color) {
+		this._color = color;
+	}
+	get color() {
+		return this._color;
+	}
 }
 
 describe('Lazy test', () => {
@@ -41,5 +53,25 @@ describe('Lazy test', () => {
 		const lazyPoodle = makeLazy(Poodle);
 		expect(lazyPoodle.bark).toBeDefined();
 		expect(lazyPoodle.growl).toBeDefined();
+	});
+
+	it('should handle setters and getter methods', () => {
+		const dog = makeLazy(Dog);
+		dog.setAge(5);
+		const age = dog.getAge();
+		expect(age).toEqual(5);
+	});
+
+	it('should handle setter/getter sugar helpers', () => {
+		const dog = makeLazy(Dog);
+		dog.color = 'blue';
+		const color = dog.color;
+		expect(color).toEqual('blue');
+	});
+
+	it('should return an instance of the class when asked', () => {
+		const dog = makeLazy(Dog);
+		dog.bark();
+		expect(dog.getInstance() instanceof Dog).toBe(true);
 	});
 });
