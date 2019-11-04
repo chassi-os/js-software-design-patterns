@@ -1,16 +1,20 @@
 class Bridge {
-	functionMappings = new WeakMap();
+	functionMappings = new Map();
 
 	join = (keyFunc, nextFunc) => {
-		this.functionMappings.set(keyFunc, nextFunc);
-		return this._apply(keyFunc);
+		this.functionMappings.set(keyFunc.name, nextFunc);
+		const me = this;
+		return (...args) => {
+			const value = keyFunc(args);
+			return me.functionMappings.get(keyFunc.name)(value);
+		};
 	};
 
 	_apply = keyFunc => {
 		const me = this;
-		return function() {
-			const value = keyFunc(...arguments);
-			return me.functionMappings.get(keyFunc)(value);
+		return (...args) => {
+			const value = keyFunc(args);
+			return me.functionMappings.get(keyFunc.name)(value);
 		};
 	};
 }

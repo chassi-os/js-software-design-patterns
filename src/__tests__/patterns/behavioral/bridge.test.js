@@ -4,25 +4,31 @@ class TV {
 	constructor(name) {
 		this.name = name;
 	}
-	setChannel = channel => `${this.name} had its channel changed to ${channel}`;
+	setChannel(channel) {
+		return `${this.name} had its channel changed to ${channel}`;
+	}
 }
 
 class Remote {
-	channel = 0;
-	channelUp = () => {
+	constructor() {
+		this.channel = 0;
+	}
+
+	channelUp() {
+		console.warn(this);
 		this.channel++;
 		return this.channel;
-	};
+	}
 
-	channelDown = () => {
+	channelDown() {
 		this.channel--;
 		return this.channel;
-	};
+	}
 
-	jumpToChannel = channel => {
+	jumpToChannel(channel) {
 		this.channel = channel;
 		return this.channel;
-	};
+	}
 }
 
 describe('Bridge tests', () => {
