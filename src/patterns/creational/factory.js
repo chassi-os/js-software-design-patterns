@@ -13,7 +13,7 @@ class Factory {
 		this.mappings.set(enumName, className);
 	};
 
-	get = (enumName, args = []) => {
+	get = (enumName, ...args) => {
 		if (!this.names.includes(enumName)) throw new Error(`${enumName} is not well defined in the list provided: ${this.names.join(', ')}`);
 		if (!this.mappings.has(enumName)) throw new Error(`${enumName} isnt mapped to a class`);
 		const className = this.mappings.get(enumName);
