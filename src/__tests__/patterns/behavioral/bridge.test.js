@@ -1,4 +1,4 @@
-import Bridge from '../../../patterns/behavioral/bridge';
+import bridge from '../../../patterns/behavioral/bridge';
 
 class TV {
 	constructor(name) {
@@ -15,7 +15,6 @@ class Remote {
 	}
 
 	channelUp() {
-		console.warn(this);
 		this.channel++;
 		return this.channel;
 	}
@@ -32,40 +31,28 @@ class Remote {
 }
 
 describe('Bridge tests', () => {
-	let bridge;
 	let remote;
 	let tv;
 
 	beforeEach(() => {
-		bridge = new Bridge();
 		remote = new Remote();
 		tv = new TV('Bedroom TV');
 	});
 
-	it('should construct with empty mappings', () => {
-		// uses a weak map, so checking to make sure that is the case
-		expect(bridge.functionMappings instanceof WeakMap).toBe(true);
-	});
-
-	it('should bridge 2 class instances functions', () => {
-		bridge.join(remote.channelUp, tv.setChannel);
-		expect(bridge.functionMappings.get(remote.channelUp)).toBe(tv.setChannel);
-	});
-
 	it('should return a function to execute', () => {
-		const callable = bridge.join(remote.channelUp, tv.setChannel);
+		const callable = bridge(remote, remote.channelUp)(tv, tv.setChannel);
 		expect(typeof callable).toEqual('function');
 	});
 
 	it('should bridge function calls, returning correct value', () => {
-		const channelUp = bridge.join(remote.channelUp, tv.setChannel);
-		const channelDown = bridge.join(remote.channelDown, tv.setChannel);
+		const channelUp = bridge(remote, remote.channelUp)(tv, tv.setChannel);
+		const channelDown = bridge(remote, remote.channelDown)(tv, tv.setChannel);
 		expect(channelUp()).toBe('Bedroom TV had its channel changed to 1');
 		expect(channelDown()).toBe('Bedroom TV had its channel changed to 0');
 	});
 
 	it('should accept arguments with return callable function', () => {
-		const changeTo = bridge.join(remote.jumpToChannel, tv.setChannel);
+		const changeTo = bridge(remote, remote.jumpToChannel)(tv, tv.setChannel);
 		expect(changeTo(20)).toBe('Bedroom TV had its channel changed to 20');
 	});
 });
