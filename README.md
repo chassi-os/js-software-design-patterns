@@ -65,7 +65,7 @@ const parrot = AnimalFactory.get('PARROT', 'Cockatoo', 6, 'Crackers')
 ```
 
 #### makeLazy
-Provides a generic lazy initialization pattern function. The methods of the class will act as a trigger to instantiate the class. This pattern is especially useful when you need objects in a wide scope but do not know when they will be used or by which instance methods to which the lazy object belongs. Note, methods must be instance methods when constructed; anonymous methods (arrow operators) will not be referenced. Static class methods are obviously spurious to an instance.
+Provides a generic lazy initialization pattern function. The methods of the class will act as a trigger to instantiate the class. This pattern is especially useful when you need objects in a wide scope but do not know when they will be used or by which instance methods to which the lazy object belongs. Note, methods must be instance methods when constructed; anonymous methods (arrow operators) will not be referenced. Static class methods are obviously spurious to an instance. Class instance properties will not trigger a construction of the instance; use `set` and `get` method instead.
 
 ```javascript
 import { makeLazy } from 'js-software-design-patterns';
@@ -74,6 +74,8 @@ class Dog {
     bark(){ console.log('bark!!!') }
     eat(){ }
     sleep: () => {}
+    set age(age){ this._age = age }
+    get age(){ return this._age }
 }
 
 // lazily set up a reference to the constructor
@@ -93,6 +95,15 @@ lazyDog.eat();
 const brokenLazyDog = makeLazy(Dog);
 brokenLazyDog.sleep();
 // expected output - sleep is not defined
+
+
+// example of using set and get syntax
+const blueDog = makeLazy(Dog);
+blueDog.color = 'blue';
+const color = blueDog.color;
+console.log(color === 'blue');
+// expected output - true
+
 ```
 
 ### Behavioral
