@@ -2,24 +2,27 @@ export default (klass = {}) => {
 	const functions = helper(klass.prototype);
 	let instance;
 	const getInstance = () => instance;
-	return functions.reduce((obj, next) => {
-		return {
-			...obj,
-			getInstance: function() {
-				return instance;
-			},
-			[next]: function() {
-				if (!instance) {
-					try {
-						instance = new klass();
-					} catch (e) {
-						throw new Error('The passed "class" is not a class');
+	return functions.reduce(
+		(obj, next) => {
+			return {
+				...obj,
+
+				[next]: function() {
+					if (!instance) {
+						try {
+							instance = new klass();
+						} catch (e) {
+							throw new Error('The passed "class" is not a class');
+						}
 					}
-				}
-				return getInstance()[next](...arguments);
-			},
-		};
-	}, {});
+					return getInstance()[next](...arguments);
+				},
+			};
+		},
+		{
+			getInstance,
+		}
+	);
 };
 
 const helper = (prototype, methods = []) => {
