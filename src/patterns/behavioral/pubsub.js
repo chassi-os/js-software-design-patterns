@@ -81,12 +81,12 @@ const get = (pubsub, enumName, args = []) => {
 		const [name, ...channels] = args;
 		let publisher = [...pubsub.publishers.keys()].find(publisher => publisher.name === name);
 		if (publisher) return publisher;
-		publisher = pubSubFactory.get(enumName, args);
+		publisher = pubSubFactory.get(enumName, ...args);
 		publisher.pubsub = pubsub;
 		publisher.channels.forEach(channel => pubsub.createChannel(publisher, channel));
 		return publisher;
 	} else if (enumName === 'SUBSCRIBER') {
-		const subscriber = pubSubFactory.get(enumName, args);
+		const subscriber = pubSubFactory.get(enumName, ...args);
 		subscriber.pubsub = pubsub;
 		const subscriptionTransactions = new Map();
 		Object.keys(subscriber.subscriptions).forEach(name => {

@@ -3,8 +3,9 @@ import Factory from '../../../patterns/creational/factory';
 class Dog {}
 class Cat {}
 class Parrot {
-	constructor(props) {
-		this.props = props;
+	constructor(breed, age) {
+		this.breed = breed;
+		this.age = age;
 	}
 }
 
@@ -54,8 +55,9 @@ describe('Factory tests', () => {
 	it('should get an instance with passing properties', () => {
 		factory.setEnums(['PARROT']);
 		factory.setLine('PARROT', Parrot);
-		const bird = factory.get('PARROT', ['some args']);
-		expect(bird.props).toEqual('some args');
+		const bird = factory.get('PARROT', 'cockatoo', '6 years old');
+		expect(bird.breed).toEqual('cockatoo');
+		expect(bird.age).toEqual('6 years old');
 	});
 
 	it('should throw an exception when no enum name on get', () => {

@@ -55,9 +55,13 @@ export default animalFactory;
 
 ```javascript
 import AnimalFactory from './animal-factory'
+
+// have factory construct basic classes
 const dog = AnimalFactory.get('DOG');
 const cat = AnimalFactory.get('CAT');
-const parrot = AnimalFactory.get('PARROT')
+
+// have factory construct class with constructor arguments
+const parrot = AnimalFactory.get('PARROT', 'Cockatoo', 6, 'Crackers')
 ```
 
 #### makeLazy
