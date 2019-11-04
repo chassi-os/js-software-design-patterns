@@ -1,6 +1,5 @@
 export default (klass = {}) => {
-	const properties = Object.getOwnPropertyNames(klass.prototype).filter(name => name !== 'constructor');
-	const functions = properties.filter(prop => typeof klass.prototype[prop] === 'function');
+	const functions = helper(klass.prototype);
 	let instance;
 
 	return functions.reduce((obj, next) => {
@@ -18,4 +17,12 @@ export default (klass = {}) => {
 			},
 		};
 	}, {});
+};
+
+const helper = (prototype, methods = []) => {
+	if (prototype.constructor.name === 'Object') return methods;
+	const properties = Object.getOwnPropertyNames(prototype).filter(name => name !== 'constructor');
+	const functions = properties.filter(prop => typeof prototype[prop] === 'function');
+	const nextMethods = [...methods, ...functions];
+	return helper(prototype.__proto__, nextMethods);
 };
