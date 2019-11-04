@@ -33,7 +33,13 @@ describe('Lazy test', () => {
 		} catch (e) {
 			thrown = true;
 		}
-
 		expect(thrown).toBe(true);
+	});
+
+	it('should be able to handle subclassing', () => {
+		class Poodle extends Dog {}
+		const lazyPoodle = makeLazy(Poodle);
+		expect(lazyPoodle.bark).toBeDefined();
+		expect(lazyPoodle.growl).toBeDefined();
 	});
 });
