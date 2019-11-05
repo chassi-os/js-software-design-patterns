@@ -325,7 +325,7 @@ execute(20);
 
 ## Change Log
 
-### [NEXT]
+### v0.5.1
     - updates description of how to use momento
     - adds TOC to readme
 
