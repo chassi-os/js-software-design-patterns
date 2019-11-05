@@ -1,5 +1,7 @@
 import bridge from './bridge';
+import Momento from './momento';
 
-modules.exports = {
+module.exports = {
 	bridge,
+	Momento,
 };
