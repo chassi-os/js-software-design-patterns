@@ -1,4 +1,4 @@
-import bridge from '../../../patterns/behavioral/bridge';
+import bridge from '../../../patterns/structural/bridge';
 
 class TV {
 	constructor(name) {
