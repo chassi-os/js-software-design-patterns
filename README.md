@@ -1,24 +1,24 @@
-# JS Software Patterns
+# JS Software Design Patterns
+
+## TOC
+- [Usage](#usage)
+- [Categories](#categories)
+    - [Creational](#creational)
+        - [Builder](#builder)
+        - [Factory](#factory)
+        - [makeLazy](#makeLazy)
+    - [Behavioral](#behavioral)
+        - [Chain of Responsibility](#chain-of-responsibility)
+        - [Command](#command)
+        - [Momento](#momento)
+        - [PubSub/Observer](#pubSub-(observer-patter))
+    - [Structural](#structural)
+        - [Bridge](#bridge)
 
 ## Usage
 ```javascript
 import * as patterns from 'js-software-design-patterns';
 ```
-
-## TOC
-Categories
-- [Creational](#creational)
-    - [Builder](#builder)
-    - [Factory](#factory)
-    - [makeLazy](#makeLazy)
-- [Behavioral](#behavioral)
-    - [Chain of Responsibility](#chain-of-responsibility)
-    - [Command](#command)
-    - [Momento](#momento)
-    - [PubSub/Observer](#pubSub-(observer-patter))
-- [Structural](#structural)
-    - [Bridge](#bridge)
-
 
 ## Categories
 
@@ -326,7 +326,8 @@ execute(20);
 ## Change Log
 
 ### [NEXT]
-    - updates description of how to use momento pattern
+    - updates description of how to use momento
+    - adds TOC to readme
 
 ### v0.5.0
     - fixes export syntax for structural exports
