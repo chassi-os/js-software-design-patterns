@@ -14,6 +14,7 @@
         - [PubSub/Observer](#pubSub-(observer-patter))
     - [Structural](#structural)
         - [Bridge](#bridge)
+- [Changelog](#changelog)
 
 ## Usage
 ```javascript
@@ -323,7 +324,7 @@ execute(20);
 ```
 
 
-## Change Log
+## Changelog
 
 ### v0.5.1
     - updates description of how to use momento
