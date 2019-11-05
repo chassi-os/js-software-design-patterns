@@ -1,4 +1,4 @@
-import Momento from '../../../patterns/structural/momento';
+import Momento from '../../../patterns/behavioral/momento';
 
 describe('Momento tests', () => {
 	let momento;
