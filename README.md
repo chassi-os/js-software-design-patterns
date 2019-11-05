@@ -190,7 +190,7 @@ commander.execute('make cooler', 65);
 ```
 
 #### Momento
-Implementation of a momento pattern. The momento pattern allows you to save a state of an object or instance and then recover that previously saved state. This mutates the state of the object and will not work on frozen/immutable objects.
+Implementation of a momento pattern. The momento pattern allows you to save a state of an object or instance and then recover that previously saved state. This mutates the state of the object and will not work on frozen/immutable objects. A single momento instance, once used to save a momento of an originating object, is permanently bound to that originator of the momento and cannot be used by other originating instances.
 
 ```javascript
 import { Momento } from 'js-software-design-patterns';
@@ -200,31 +200,31 @@ const fooBar = {
     bar: 'bar',
 }
 
-const momento = new Momento();
+const foobarMomento = new Momento();
 
 // Save the current state of fooBar
-momento.save(fooBar);
+foobarMomento.save(fooBar);
 
 fooBar.foo = 'bar';
 
 // Now recover the previous state of fooBar
-momento.recover(fooBar)
+foobarMomento.recover(fooBar)
 console.log(fooBar.foo);
 // Expected output - foo
 
 delete fooBar.bar;
-momento.recover(fooBar);
+foobarMomento.recover(fooBar);
 console.log(fooBar.bar);
 // Expected output - bar
 
 fooBar.fooBar = 'fooBar';
-momento.recover(fooBar);
+foobarMomento.recover(fooBar);
 console.log(fooBar.fooBar);
 // Expected output - undefined
 
 fooBar.fooBar = 'fooBar';
-momento.save(fooBar);
-momento.recover(fooBar);
+foobarMomento.save(fooBar);
+foobarMomento.recover(fooBar);
 console.log(fooBar);
 // Expected output
 // {
@@ -310,6 +310,9 @@ execute(20);
 
 ## Change Log
 
+### [NEXT]
+    - updates description of how to use momento pattern
+    
 ### v0.5.0
-- fixes export syntax for structural exports
-- adds momento pattern
+    - fixes export syntax for structural exports
+    - adds momento pattern
