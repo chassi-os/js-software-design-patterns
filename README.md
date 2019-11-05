@@ -189,6 +189,51 @@ commander.execute('make cooler', 65);
 //  - Turned on the fan
 ```
 
+#### Momento
+Implementation of a momento pattern. The momento pattern allows you to save a state of an object or instance and then recover that previously saved state. This mutates the state of the object and will not work on frozen/immutable objects.
+
+```javascript
+import { Momento } from 'js-software-design-patterns';
+
+const fooBar = {
+    foo: 'foo',
+    bar: 'bar',
+}
+
+const momento = new Momento();
+
+// Save the current state of fooBar
+momento.save(fooBar);
+
+fooBar.foo = 'bar';
+
+// Now recover the previous state of fooBar
+momento.recover(fooBar)
+console.log(fooBar.foo);
+// Expected output - foo
+
+delete fooBar.bar;
+momento.recover(fooBar);
+console.log(fooBar.bar);
+// Expected output - bar
+
+fooBar.fooBar = 'fooBar';
+momento.recover(fooBar);
+console.log(fooBar.fooBar);
+// Expected output - undefined
+
+fooBar.fooBar = 'fooBar';
+momento.save(fooBar);
+momento.recover(fooBar);
+console.log(fooBar);
+// Expected output
+// {
+//      foo: 'foo'
+//      bar: 'bar'
+//      fooBar: 'fooBar'
+// }
+```
+
 #### PubSub (Observer Pattern)
 A declarative namespaced pubsub pattern.
 
@@ -261,3 +306,10 @@ execute(20);
 //      Remote changing channel to 20.
 //      TV set to channel 20.
 ```
+
+
+## Change Log
+
+### v0.5.0
+- fixes export syntax for structural exports
+- adds momento pattern

@@ -1,5 +1,5 @@
 import bridge from './bridge';
 
-modules.exports = {
+module.exports = {
 	bridge,
 };
