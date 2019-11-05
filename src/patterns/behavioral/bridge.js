@@ -1,18 +1,3 @@
-class Bridge {
-	functionMappings = new WeakMap();
+const bridge = (keyScope, keyFunc) => (toScope, toFunc) => (...args) => toFunc.apply(toScope, [keyFunc.apply(keyScope, args)]);
 
-	join = (keyFunc, nextFunc) => {
-		this.functionMappings.set(keyFunc, nextFunc);
-		return this._apply(keyFunc);
-	};
-
-	_apply = keyFunc => {
-		const me = this;
-		return function() {
-			const value = keyFunc(...arguments);
-			return me.functionMappings.get(keyFunc)(value);
-		};
-	};
-}
-
-export default Bridge;
+export default bridge;

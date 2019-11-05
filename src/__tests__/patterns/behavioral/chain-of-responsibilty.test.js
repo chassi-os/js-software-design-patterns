@@ -6,7 +6,9 @@ class TestChainItem extends ChainOfResponsibility {
 		this.number = number;
 	}
 
-	executeOn = (number = 0) => this.number + number;
+	executeOn(number = 0) {
+		return this.number + number;
+	}
 }
 
 describe('Chain of responsibility tests', () => {

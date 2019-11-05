@@ -111,14 +111,20 @@ console.log(instance instanceof Dog)
 // expected output - true
 ```
 
+
+
+
+
+
+
 ### Behavioral
 Well known behavioral patterns
 
 #### Bridge
-A take on the well known bridge pattern. Allows for any two methods of class instances to be joined, resulting in a return of an executable function.
+A take on the well known bridge pattern. Allows for any two methods of class instances to be joined, resulting in a return of an executable function. The `bridge` function takes scope to be applied to a function and then returns a `to` function to join another scope and a function. The `to` function when called then returns an `execute` function that accepts the same argument parameters as the initial function passed to `bridge`. It then calls the first joined function and using its return value as arguments to the second joined function, calls the second, returning its return value.
 
 ```javascript
-import { Bridge } from 'js-software-design-patterns';
+import { bridge } from 'js-software-design-patterns';
 
 class Remote {
     changeChannelTo = (channel) => {
@@ -133,12 +139,10 @@ class TV {
 
 const remote = new Remote();
 const tv = new TV();
-const bridge = new Bridge();
 
-const channelChanger = bridge.join(remote.changeChannelTo, tv.changeChannelTo);
-
-
-channelChanger(20);
+const to = bridge(remote, remote.changeChannelTo);
+const execute = to(tv, tv.changeChannelTo);
+execute(20);
 // expected output -
 //      Remote changing channel to 20.
 //      TV set to channel 20.
