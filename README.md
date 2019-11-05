@@ -190,7 +190,7 @@ commander.execute('make cooler', 65);
 ```
 
 #### Momento
-Implementation of a momento pattern. The momento pattern allows you to save a state of an object or instance and then recover that previously saved state.
+Implementation of a momento pattern. The momento pattern allows you to save a state of an object or instance and then recover that previously saved state. This mutates the state of the object and will not work on frozen/immutable objects.
 
 ```javascript
 import { Momento } from 'js-software-design-patterns';
