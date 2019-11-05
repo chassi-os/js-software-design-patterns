@@ -5,12 +5,27 @@
 import * as patterns from 'js-software-design-patterns';
 ```
 
+## TOC
+Categories
+- [Creational](#creational)
+    - [Builder](#builder)
+    - [Factory](#factory)
+    - [makeLazy](#makeLazy)
+- [Behavioral](#behavioral)
+    - [Chain of Responsibility](#chain-of-responsibility)
+    - [Command](#command)
+    - [Momento](#momento)
+    - [PubSub/Observer](#pubSub-(observer-patter))
+- [Structural](#structural)
+    - [Bridge](#bridge)
+
+
 ## Categories
 
 ### Creational
 Well known creational patterns
 
-#### Builder Pattern
+#### Builder
 Used to build classes that have minor changes from instance to instance efficiently. Any class that has a `set[A-Z][a-zA-Z0-9]*` method, will have that method extracted and used to build the instance. Setters should only ever have one property passed.
 
 ```javascript
@@ -312,7 +327,7 @@ execute(20);
 
 ### [NEXT]
     - updates description of how to use momento pattern
-    
+
 ### v0.5.0
     - fixes export syntax for structural exports
     - adds momento pattern
