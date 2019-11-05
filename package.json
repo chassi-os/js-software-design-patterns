@@ -1,6 +1,6 @@
 {
   "name": "js-software-design-patterns",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "industry proven software patterns",
   "main": "lib/index.js",
   "scripts": {
@@ -36,6 +36,20 @@
     "lint-staged": "^9.4.2",
     "prettier": "^1.18.2",
     "react-scripts": "^3.2.0"
- },
- "keywords": ["builder", "factory", "lazy", "chain of responsibility", "command", "momento", "pubsub", "observer", "bridge", "creational patterns", "behavioral patterns", "structural patterns", "software design patterns"]
+  },
+  "keywords": [
+    "builder",
+    "factory",
+    "lazy",
+    "chain of responsibility",
+    "command",
+    "momento",
+    "pubsub",
+    "observer",
+    "bridge",
+    "creational patterns",
+    "behavioral patterns",
+    "structural patterns",
+    "software design patterns"
+  ]
 }
