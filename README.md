@@ -5,6 +5,7 @@
 - [Categories](#categories)
     - [Creational](#creational)
         - [Builder](#builder)
+        - [curry](#curry)
         - [Factory](#factory)
         - [makeLazy](#makeLazy)
     - [Behavioral](#behavioral)
@@ -46,6 +47,28 @@ const puppy = builder.build();
 buider.age = 10;
 const adult = builder.build();
 // expected { breed: 'husky', age: 10 }
+```
+
+#### Curry
+Provides a currying function for partial function calls. Calling `curry` requires at minimum a function, with any number of optional arguments to be pass to function pointer. The return value of the call is a function that will curry all arguments until no more arguments are passed, which at that point, it will execute the initial function passing all previous arguments the in the order they were received.
+
+```javascript
+import { curry } from 'js-software-design-patterns';
+
+const add = (...args) => args.reduce((sum, next) => sum + next, 0);
+
+// start the curry
+let curriedAdder = curry(add, 1, 2, 3);
+
+// continue to curry
+curriedAdder = curriedAdder(4);
+curriedAdder = curriedAdder(5,6);
+
+// end the curry and execute the initial function (add)
+const sum = curriedAdder();
+
+console.log(sum);
+// expected output - 21
 ```
 
 #### Factory
