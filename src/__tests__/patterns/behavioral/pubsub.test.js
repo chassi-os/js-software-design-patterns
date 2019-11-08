@@ -88,7 +88,7 @@ describe('PubSub tests', () => {
 		const handler = jest.fn();
 		subscriber.setOnPublish(handler);
 		publisher.publish('TNT', 'MESSAGE');
-		expect(handler).toBeCalledWith('MESSAGE');
+		expect(handler).toBeCalledWith('TNT', 'TNT', 'MESSAGE');
 		expect(handler).toHaveBeenCalledTimes(1);
 		publisher.publish('TNT', 'message');
 		expect(handler).toHaveBeenCalledTimes(2);

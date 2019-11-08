@@ -63,7 +63,7 @@ export default class PubSub {
 		this.publishers
 			.get(publisher)
 			.get(channel)
-			.forEach(subscriber => subscriber.onPublish(data));
+			.forEach(subscriber => subscriber.onPublish(publisher.name, channel, data));
 	};
 
 	createChannel = (publisher, channel) => {
