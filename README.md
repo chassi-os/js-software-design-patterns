@@ -349,6 +349,11 @@ execute(20);
 
 ## Changelog
 
+### v1.01
+    - fixes readme link
+    - enhances command pattern to allow scope assignment
+    - enhances pubsub to pass publisher name, channel, and data on publish
+
 ### v1.0.0
     - adds curry function
 
