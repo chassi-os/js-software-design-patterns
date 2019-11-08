@@ -47,4 +47,29 @@ describe('Commander tests', () => {
 		expect(nowRun).toHaveBeenCalledTimes(1);
 		expect(run).toHaveBeenCalledTimes(1);
 	});
+
+	it('should have the scope of the passed', () => {
+		class Test {
+			getScope() {
+				this.scope = this;
+			}
+		}
+		const t = new Test();
+		commander.register('scopeTest', t.getScope, t);
+		commander.execute('scopeTest');
+		expect(t.scope).toBe(t);
+	});
+
+	it('should have the scope of the commander if no scope is passed', () => {
+		const c = new Commander();
+		class Test {
+			getScope() {
+				this.scope = 'commander';
+			}
+		}
+		const t = new Test();
+		c.register('scopeTest', t.getScope);
+		c.execute('scopeTest');
+		expect(c.scope).toEqual('commander');
+	});
 });
