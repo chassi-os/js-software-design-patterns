@@ -285,11 +285,11 @@ const fox = pubSub.getPublisher('Fox Network', 'Fox Sports', 'Fox News');
 const espn = pubSub.getPublisher('ESPN Network', 'ESPN College', 'ESPN 2', 'ESPN Ocho');
 
 const subscriber = pubSub.getSubscriber('Sam Subscriber', {'Fox Network': ['Fox Sports'],'ESPN Network': ['ESPN Ocho']});
-subscriber.setOnPublish( data => { console.log(data) });
+subscriber.setOnPublish( (publisher, channel, data) => { console.log(publisher, channel, data) });
 
 // Positive case
 fox.publish('Fox Sports', 'Bears win');
-// Expect "Bears win" to be printed
+// Expect "Fox", "Fox Sports", "Bears win" to be printed
 
 // Negative case
 espn.publish('ESPN College', 'Texas loses');
