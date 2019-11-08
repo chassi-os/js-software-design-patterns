@@ -12,7 +12,7 @@
         - [Chain of Responsibility](#chain-of-responsibility)
         - [Command](#command)
         - [Momento](#momento)
-        - [PubSub/Observer](#pubSub-(observer-patter))
+        - [PubSub/Observer](#pubsub-observer-pattern)
     - [Structural](#structural)
         - [Bridge](#bridge)
 - [Changelog](#changelog)
@@ -350,7 +350,7 @@ execute(20);
 ## Changelog
 
 ### v1.0.0
-    - adds curry function 
+    - adds curry function
 
 ### v0.5.1
     - updates description of how to use momento
