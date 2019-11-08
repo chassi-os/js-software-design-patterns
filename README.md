@@ -349,6 +349,9 @@ execute(20);
 
 ## Changelog
 
+### v1.0.0
+    - adds curry function 
+
 ### v0.5.1
     - updates description of how to use momento
     - adds TOC to readme
